@@ -7,7 +7,14 @@
 #define _OUT_ 5
 #define _COUT_ 6
 #define _NEWL_ 7
-
+#define _IF_ 8
+#define _ENDIF_ 9
+#define _EQ_  10
+#define _NE_  11
+#define _GT_  12
+#define _GE_  13
+#define _LT_  14
+#define _LE_  15
 #define _LITERAL_ 0
 #define _L_ 0
 #define _REGISTER_ 1

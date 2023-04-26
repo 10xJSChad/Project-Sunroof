@@ -1,5 +1,6 @@
 #define INDEX (i)
 #define INDEX_INCREMENT (++i)
+#define INSTRUCTIONS (instructions)
 #define INSTRUCTION (instructions[i])
 #define NEXT_INSTRUCTION (instructions[++i])
 

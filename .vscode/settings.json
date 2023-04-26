@@ -10,7 +10,8 @@
         "stdint.h": "c",
         "stdint-gcc.h": "c",
         "general.h": "c",
-        "instructions.h": "c"
+        "instructions.h": "c",
+        "linkedlist.h": "c"
     },
     "cSpell.words": [
         "ureg"

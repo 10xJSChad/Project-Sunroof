@@ -25,10 +25,27 @@ so I just used extended assembly instead, works fine.
 	goto terminate_interpreter; \
 }
 
+#define EQ ARG1 == ARG2
+
+#define IF { \
+	ARG1 = NEXT_VALUE; \
+	ARG2 = NEXT_VALUE; \
+	REG[3] = NEXT_INSTRUCTION; \
+	switch (REG[3]) { \
+		case 10: RETURN_VAL = ARG1 == ARG2; break; \
+		case 11: RETURN_VAL = ARG1 != ARG2; break; \
+		case 12: RETURN_VAL = ARG1 > ARG2; break; \
+		case 13: RETURN_VAL = ARG1 >= ARG2; break; \
+		case 14: RETURN_VAL = ARG1 < ARG2; break; \
+		case 15: RETURN_VAL = ARG1 <= ARG2; break; \
+		default: break; \
+	} \
+}
 
 #define ADD (RETURN_VAL = NEXT_VALUE + NEXT_VALUE)
 #define SUBTRACT (RETURN_VAL = NEXT_VALUE - NEXT_VALUE)
-#define GOTO (INDEX = NEXT_VALUE)
+#define LABEL (NEXT_INSTRUCTION) // Skip, should be taken care of by a parser
+#define GOTO (INDEX = NEXT_INSTRUCTION)
 #define OUT printf("%d", NEXT_VALUE)
 #define COUT printf("%c", NEXT_VALUE)
 #define NEWL printf("\n")
