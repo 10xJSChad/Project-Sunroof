@@ -9,3 +9,15 @@
 	i; \
 })
 
+#define PARSER_FIND_ENDIF ({ \
+    ++i; \
+    x = 1; \
+    while (instructions[i+1] != -1) { \
+        if (instructions[i] == _IF_) ++x; \
+        if (instructions[i] == _ENDIF_) --x; \
+        if (x == 0) break; \
+        ++i; \
+    } \
+	i; \
+})
+

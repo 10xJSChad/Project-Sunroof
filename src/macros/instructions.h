@@ -21,27 +21,6 @@ so I just used extended assembly instead, works fine.
 }
 
 
-#define TERMINATE { \
-	goto terminate_interpreter; \
-}
-
-#define EQ ARG1 == ARG2
-
-#define IF { \
-	ARG1 = NEXT_VALUE; \
-	ARG2 = NEXT_VALUE; \
-	REG[3] = NEXT_INSTRUCTION; \
-	switch (REG[3]) { \
-		case 10: RETURN_VAL = ARG1 == ARG2; break; \
-		case 11: RETURN_VAL = ARG1 != ARG2; break; \
-		case 12: RETURN_VAL = ARG1 > ARG2; break; \
-		case 13: RETURN_VAL = ARG1 >= ARG2; break; \
-		case 14: RETURN_VAL = ARG1 < ARG2; break; \
-		case 15: RETURN_VAL = ARG1 <= ARG2; break; \
-		default: break; \
-	} \
-}
-
 #define ADD (RETURN_VAL = NEXT_VALUE + NEXT_VALUE)
 #define SUBTRACT (RETURN_VAL = NEXT_VALUE - NEXT_VALUE)
 #define LABEL (NEXT_INSTRUCTION) // Skip, should be taken care of by a parser
@@ -51,3 +30,25 @@ so I just used extended assembly instead, works fine.
 #define NEWL printf("\n")
 
 
+#define TERMINATE { \
+	goto terminate_interpreter; \
+}
+
+
+#define IF { \
+	ARG1 = INDEX; \
+	ARG2 = NEXT_VALUE; \
+	ARG3 = NEXT_VALUE; \
+	REG[3] = NEXT_INSTRUCTION; \
+	switch (REG[3]) { \
+		case 10: RETURN_VAL = ARG2 == ARG3; break; \
+		case 11: RETURN_VAL = ARG2 != ARG3; break; \
+		case 12: RETURN_VAL = ARG2 >  ARG3; break; \
+		case 13: RETURN_VAL = ARG2 >= ARG3; break; \
+		case 14: RETURN_VAL = ARG2 <  ARG3; break; \
+		case 15: RETURN_VAL = ARG2 <= ARG3; break; \
+		default: break; \
+	} \
+	if (!RETURN_VAL) INDEX = NEXT_INSTRUCTION; \
+	else INDEX += 2; \
+}

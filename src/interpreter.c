@@ -14,8 +14,10 @@
 
 ListNode_i64* stack_top;
 int64_t* instructions;
+int64_t* if_jumps;
 int64_t i, j, k, x;
 int64_t registers[6];
+int64_t arg_registers[6];
 bool initialized;
 
 
@@ -73,6 +75,13 @@ void parser()
 			INSTRUCTIONS[REG[1]+1] = PARSER_FIND_LABEL(NEXT_INSTRUCTION);
 			INDEX = REG[1];
 		}
+
+		if (INSTRUCTION == _IF_){
+			REG[1] = INDEX;
+			INSTRUCTIONS[REG[1] + 6] = PARSER_FIND_ENDIF;
+			INDEX = REG[1];
+		}
+
 		INSTRUCTION = NEXT_INSTRUCTION;
 	}
 
@@ -100,8 +109,10 @@ void main()
 
 	#define _INSTRUCTIONS \
 	_MOV_, 1, _LITERAL_, 69, \
-	_IF_, _REGISTER_, 1, _LITERAL_, 69, _GE_, \
+	_IF_, _REGISTER_, 1, _LITERAL_, 69, _GE_, 0, \
+	_COUT_, 'E', _COUT_, 'Z', _NEWL_, \
 	_ENDIF_, \
+	_COUT_, 'E', _COUT_, 'Z', _NEWL_, \
 	_TERMINATE_, \
 
 

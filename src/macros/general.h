@@ -11,8 +11,8 @@
 	((instructions[++i]) ? (registers[instructions[++i]]) : (instructions[++i]))
 	
 #define RETURN_VAL (registers[0])
-#define ARG1 (registers[1])
-#define ARG2 (registers[2])
-#define ARG3 (registers[3])
-#define ARG4 (registers[4])
-#define ARG5 (registers[5])
+#define ARG1 (arg_registers[1])
+#define ARG2 (arg_registers[2])
+#define ARG3 (arg_registers[3])
+#define ARG4 (arg_registers[4])
+#define ARG5 (arg_registers[5])
