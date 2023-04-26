@@ -9,7 +9,7 @@
                 "${file}",
                 "-O3",
                 "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+                "${workspaceFolder}/build/${fileBasenameNoExtension}.exe",
             ],
             "group": {
                 "kind": "build",
