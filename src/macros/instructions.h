@@ -20,23 +20,17 @@ so I just used extended assembly instead, works fine.
 	); \
 }
 
-#define ADD { \
-	RETURN_VAL = NEXT_VALUE + NEXT_VALUE; \
+
+#define TERMINATE { \
+	goto terminate_interpreter; \
 }
 
-#define SUBTRACT { \
-	RETURN_VAL = NEXT_VALUE - NEXT_VALUE; \
-}
 
-#define GOTO { \
-	INDEX = NEXT_VALUE; \
-}
-
+#define ADD (RETURN_VAL = NEXT_VALUE + NEXT_VALUE)
+#define SUBTRACT (RETURN_VAL = NEXT_VALUE - NEXT_VALUE)
+#define GOTO (INDEX = NEXT_VALUE)
 #define OUT printf("%d", NEXT_VALUE)
 #define COUT printf("%c", NEXT_VALUE)
 #define NEWL printf("\n")
 
 
-#define TERMINATE { \
-	goto terminate_interpreter; \
-}
